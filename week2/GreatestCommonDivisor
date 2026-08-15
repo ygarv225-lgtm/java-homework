@@ -1,0 +1,37 @@
+public class GreatestCommonDivisor {
+
+    public static int gcd(int first, int second) {
+  
+        first = Math.abs(first);
+        second = Math.abs(second);
+
+      
+        while (second != 0) {
+            int remainder = first % second;
+            first = second;
+            second = remainder;
+        }
+
+      
+        return first;
+    }
+
+    public static void main(String[] args) {
+     
+        int[][] testPairs = {
+            {48, 18},
+            {21, 14},
+            {7, 5},
+            {100, 0}
+        };
+
+        System.out.println("--- Testing Greatest Common Divisor (GCD) ---");
+
+      
+        for (int[] pair : testPairs) {
+            int num1 = pair[0];
+            int num2 = pair[1];
+            System.out.printf("GCD of %3d and %2d is: %d%n", num1, num2, gcd(num1, num2));
+        }
+    }
+}
