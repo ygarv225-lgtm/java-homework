@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+public class LoopPatterns {
+
+    public static void printPatternA(int size) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printPatternB(int size) {
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printPatternC(int size) {
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printPatternD(int size) {
+        for (int i = size; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printPatternE(int size) {
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter size: ");
+        int size = scanner.nextInt();
+
+        if (size < 1) {
+            System.out.println("Invalid size. Size must be 1 or greater.");
+        } else {
+            System.out.println("\nPattern A:");
+            printPatternA(size);
+            
+            System.out.println("\nPattern B:");
+            printPatternB(size);
+            
+            System.out.println("\nPattern C:");
+            printPatternC(size);
+            
+            System.out.println("\nPattern D:");
+            printPatternD(size);
+            
+            System.out.println("\nPattern E:");
+            printPatternE(size);
+        }
+        
+        scanner.close();
+    }
+}
