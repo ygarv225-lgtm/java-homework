@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+public class MarksProcessor {
+
+    public static boolean isValidMark(int mark) {
+        return mark >= 0 && mark <= 100;
+    }
+
+    public static double calculateAverage(int sum, int count) {
+        if (count == 0) {
+            return 0.0;
+        }
+        return (double) sum / count;
+    }
+
+    public static void printResults(int count, int sum, double average, int max, int passes, int fails) {
+        if (count == 0) {
+            System.out.println("No valid marks were entered.");
+            return;
+        }
+        
+        System.out.println("\n--- Results ---");
+        System.out.println("Valid marks entered: " + count);
+        System.out.println("Sum of marks: " + sum);
+        System.out.printf("Average mark: %.2f%n", average);
+        System.out.println("Highest mark: " + max);
+        System.out.println("Number of passes: " + passes);
+        System.out.println("Number of failures: " + fails);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int count = 0;
+        int sum = 0;
+        int max = -1;
+        int passes = 0;
+        int fails = 0;
+
+        while (true) {
+            System.out.print("Enter a mark (-1 to quit): ");
+            int mark = scanner.nextInt();
+
+            if (mark == -1) {
+                break;
+            }
+
+            if (!isValidMark(mark)) {
+                System.out.println("Invalid value rejected.");
+                continue;
+            }
+
+            count++;
+            sum += mark;
+
+            if (mark > max) {
+                max = mark;
+            }
+
+            if (mark >= 50) {
+                passes++;
+            } else {
+                fails++;
+            }
+        }
+
+        double average = calculateAverage(sum, count);
+        printResults(count, sum, average, max, passes, fails);
+
+        scanner.close();
+    }
+}
