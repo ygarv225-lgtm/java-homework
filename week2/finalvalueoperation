@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class FinalValueOperations {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number of operations: ");
+        int numberOfOperations = scanner.nextInt();
+        
+        int x = 0;
+        
+        System.out.println("Enter the operations (one by one or space-separated):");
+        for (int i = 0; i < numberOfOperations; i++) {
+            String operation = scanner.next();
+            
+            if (operation.contains("+")) {
+                x++;
+            } else {
+                x--;
+            }
+        }
+        
+        System.out.println("Final value of X: " + x);
+        
+        scanner.close();
+    }
+}
