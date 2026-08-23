@@ -1,0 +1,70 @@
+public class LinearSearchToolkit {
+
+    public static boolean contains(int[] values, int target) {
+        for (int val : values) {
+            if (val == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int firstIndexOf(int[] values, int target) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int lastIndexOf(int[] values, int target) {
+        for (int i = values.length - 1; i >= 0; i--) {
+            if (values[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int countOccurrences(int[] values, int target) {
+        int count = 0;
+        for (int val : values) {
+            if (val == target) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] empty = {};
+        int[] absentCase = {10, 20, 30, 40};
+        int[] firstPosCase = {99, 5, 8, 12};
+        int[] lastPosCase = {4, 8, 12, 99};
+        int[] duplicateCase = {7, 2, 7, 3, 7, 9};
+
+        System.out.println("=== Testing Empty Array ===");
+        System.out.println("contains(empty, 5): " + contains(empty, 5));
+        System.out.println("firstIndexOf(empty, 5): " + firstIndexOf(empty, 5));
+        System.out.println("lastIndexOf(empty, 5): " + lastIndexOf(empty, 5));
+        System.out.println("countOccurrences(empty, 5): " + countOccurrences(empty, 5));
+
+        System.out.println("\n=== Testing Absent Target ===");
+        System.out.println("contains(absentCase, 99): " + contains(absentCase, 99));
+        System.out.println("firstIndexOf(absentCase, 99): " + firstIndexOf(absentCase, 99));
+
+        System.out.println("\n=== Testing First Position ===");
+        System.out.println("contains(firstPosCase, 99): " + contains(firstPosCase, 99));
+        System.out.println("firstIndexOf(firstPosCase, 99): " + firstIndexOf(firstPosCase, 99));
+
+        System.out.println("\n=== Testing Last Position ===");
+        System.out.println("contains(lastPosCase, 99): " + contains(lastPosCase, 99));
+        System.out.println("lastIndexOf(lastPosCase, 99): " + lastIndexOf(lastPosCase, 99));
+
+        System.out.println("\n=== Testing Duplicates ===");
+        System.out.println("firstIndexOf(duplicateCase, 7): " + firstIndexOf(duplicateCase, 7));
+        System.out.println("lastIndexOf(duplicateCase, 7): " + lastIndexOf(duplicateCase, 7));
+        System.out.println("countOccurrences(duplicateCase, 7): " + countOccurrences(duplicateCase, 7));
+    }
+}
