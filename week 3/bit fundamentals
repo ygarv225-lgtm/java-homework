@@ -1,0 +1,53 @@
+public class BitFundamentals {
+
+    public static boolean isOdd(int number) {
+        return (number & 1) != 0;
+    }
+
+    public static int countSetBitsShift(int number) {
+        int count = 0;
+        while (number != 0) {
+            count += (number & 1);
+            number >>>= 1;
+        }
+        return count;
+    }
+
+    public static int countSetBitsFast(int number) {
+        int count = 0;
+        while (number != 0) {
+            number &= (number - 1);
+            count++;
+        }
+        return count;
+    }
+
+    public static boolean isPowerOfTwo(int number) {
+        return number > 0 && (number & (number - 1)) == 0;
+    }
+
+    public static void main(String[] args) {
+        int[] testCases = {-1, 0, 1, 2, 3, 8, 12, Integer.MIN_VALUE};
+
+        for (int num : testCases) {
+            System.out.println("Number: " + num);
+            System.out.println("  isOdd: " + isOdd(num));
+            System.out.println("  countSetBitsShift: " + countSetBitsShift(num));
+            System.out.println("  countSetBitsFast: " + countSetBitsFast(num));
+            System.out.println("  isPowerOfTwo: " + isPowerOfTwo(num));
+            System.out.println();
+        }
+
+        int fewBits = 8;
+        int manyBits = -1;
+
+        System.out.println("=== Iteration Count Comparison ===");
+        System.out.println("Number 8 (1 set bit):");
+        System.out.println("  Shift method runs 32 iterations (or until high bits clear).");
+        System.out.println("  Fast method runs 1 iteration.");
+
+        System.out.println("Number -1 (32 set bits):");
+        System.out.println("  Shift method runs 32 iterations.");
+        System.out.println("  Fast method runs 32 iterations.");
+    }
+}
