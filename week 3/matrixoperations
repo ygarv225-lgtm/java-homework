@@ -1,0 +1,119 @@
+public class MatrixOperations {
+
+    public static int[] rowSums(int[][] matrix) {
+        int[] sums = new int[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                sums[i] += matrix[i][j];
+            }
+        }
+        return sums;
+    }
+
+    public static int[] columnSums(int[][] matrix) {
+        if (matrix.length == 0) return new int[0];
+        int cols = matrix[0].length;
+        int[] sums = new int[cols];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < cols; j++) {
+                sums[j] += matrix[i][j];
+            }
+        }
+        return sums;
+    }
+
+    public static int[][] add(int[][] first, int[][] second) {
+        if (first.length != second.length || first[0].length != second[0].length) {
+            throw new IllegalArgumentException("Matrix dimensions must match for addition.");
+        }
+        int rows = first.length;
+        int cols = first[0].length;
+        int[][] result = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = first[i][j] + second[i][j];
+            }
+        }
+        return result;
+    }
+
+    public static int[][] transpose(int[][] matrix) {
+        if (matrix.length == 0) return new int[0][0];
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] result = new int[cols][rows];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[j][i] = matrix[i][j];
+            }
+        }
+        return result;
+    }
+
+    public static int[][] multiply(int[][] first, int[][] second) {
+        if (first.length == 0 || second.length == 0 || first[0].length != second.length) {
+            throw new IllegalArgumentException("First matrix column count must equal second matrix row count.");
+        }
+        int rows1 = first.length;
+        int cols1 = first[0].length;
+        int cols2 = second[0].length;
+        int[][] result = new int[rows1][cols2];
+
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                for (int k = 0; k < cols1; k++) {
+                    result[i][j] += first[i][k] * second[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int val : row) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] rectMatrix = {
+            {1, 2, 3},
+            {4, 5, 6}
+        };
+
+        int[][] matA = {
+            {1, 2},
+            {3, 4}
+        };
+
+        int[][] matB = {
+            {5, 6},
+            {7, 8}
+        };
+
+        System.out.println("Row Sums:");
+        int[] rSums = rowSums(rectMatrix);
+        for (int s : rSums) System.out.print(s + " ");
+        System.out.println("\n");
+
+        System.out.println("Column Sums:");
+        int[] cSums = columnSums(rectMatrix);
+        for (int s : cSums) System.out.print(s + " ");
+        System.out.println("\n");
+
+        System.out.println("Addition:");
+        printMatrix(add(matA, matB));
+        System.out.println();
+
+        System.out.println("Non-Square Transpose:");
+        printMatrix(transpose(rectMatrix));
+        System.out.println();
+
+        System.out.println("Multiplication:");
+        printMatrix(multiply(matA, matB));
+    }
+}
+
