@@ -1,0 +1,88 @@
+
+class Course {
+
+    private String courseCode;
+    private String title;
+    private int capacity;
+    private int enrolledCount;
+
+    Course(String courseCode, String title, int capacity) {
+
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be positive");
+        }
+
+        this.courseCode = courseCode;
+        this.title = title;
+        this.capacity = capacity;
+        this.enrolledCount = 0;
+    }
+
+    boolean enroll() {
+        if (enrolledCount < capacity) {
+            enrolledCount++;
+            return true;
+        }
+
+        return false;
+    }
+
+    boolean withdraw() {
+        if (enrolledCount > 0) {
+            enrolledCount--;
+            return true;
+        }
+
+        return false;
+    }
+
+    boolean isFull() {
+        return enrolledCount == capacity;
+    }
+
+    int getAvailableSeats() {
+        return capacity - enrolledCount;
+    }
+
+    public String toString() {
+        return "Course Code: " + courseCode +
+               ", Title: " + title +
+               ", Capacity: " + capacity +
+               ", Enrolled: " + enrolledCount +
+               ", Available Seats: " + getAvailableSeats();
+    }
+}
+
+public class CourseEnrollment {
+
+    public static void main(String[] args) {
+
+        Course course1 = new Course("C101", "Java Programming", 3);
+
+        System.out.println(course1);
+
+        System.out.println("Enroll: " + course1.enroll());
+        System.out.println(course1);
+
+        System.out.println("Enroll: " + course1.enroll());
+        System.out.println(course1);
+
+        System.out.println("Is Full: " + course1.isFull());
+
+        System.out.println("Enroll: " + course1.enroll());
+        System.out.println(course1);
+
+        System.out.println("Over-enrollment: " + course1.enroll());
+        System.out.println(course1);
+
+        System.out.println("Withdrawal: " + course1.withdraw());
+        System.out.println(course1);
+
+        course1.withdraw();
+        course1.withdraw();
+
+        System.out.println("Withdrawal from empty course: " + course1.withdraw());
+        System.out.println(course1);
+    }
+}
+
