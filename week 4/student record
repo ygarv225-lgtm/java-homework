@@ -1,0 +1,98 @@
+```java
+class Student {
+
+    private String name;
+    private String studentId;
+    private int mark;
+    
+    Student(String name, String studentId, int mark) {
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be blank");
+        }
+
+        if (studentId == null || studentId.trim().isEmpty()) {
+            throw new IllegalArgumentException("Student ID cannot be blank");
+        }
+
+        if (mark < 0 || mark > 100) {
+            throw new IllegalArgumentException("Mark must be between 0 and 100");
+        }
+
+        this.name = name;
+        this.studentId = studentId;
+        this.mark = mark;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    String getStudentId() {
+        return studentId;
+    }
+
+    int getMark() {
+        return mark;
+    }
+
+    boolean setMark(int newMark) {
+
+        if (newMark >= 0 && newMark <= 100) {
+            mark = newMark;
+            return true;
+        }
+
+        return false;
+    }
+
+    // Check if student passed
+    boolean hasPassed() {
+        return mark >= 50;
+    }
+
+    String getClassification() {
+
+        if (mark >= 80) {
+            return "Distinction";
+        } else if (mark >= 70) {
+            return "First Class";
+        } else if (mark >= 50) {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
+    }
+
+    public String toString() {
+        return "Name: " + name +
+               ", Student ID: " + studentId +
+               ", Mark: " + mark +
+               ", Classification: " + getClassification();
+}
+  
+public class StudentRecord {
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student("Rahul", "S101", 49);
+        Student s2 = new Student("Priya", "S102", 50);
+        Student s3 = new Student("Aman", "S103", 79);
+
+      
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+
+      
+        System.out.println("Update successful: " + s3.setMark(80));
+        System.out.println(s3);
+
+      
+        System.out.println("Invalid update: " + s3.setMark(110));
+
+        
+        System.out.println(s3);
+    }
+}
+```
